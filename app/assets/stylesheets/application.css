@@ -11,3 +11,13 @@
  *= require_self
  *= require_tree .
  */
+
+ .text_field {
+  height: 20px;
+  width: 180px;
+  padding: 5px;
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
