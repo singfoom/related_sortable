@@ -1,4 +1,6 @@
 RelatedSortable::Application.routes.draw do
+  resources :series
+
   resources :stories do
     collection do
       post 'sort'
