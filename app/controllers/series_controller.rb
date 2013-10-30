@@ -15,10 +15,12 @@ class SeriesController < ApplicationController
   # GET /series/new
   def new
     @series = Series.new
+    @series.stories.build
   end
 
   # GET /series/1/edit
   def edit
+    @series.stories.build
   end
 
   # POST /series
@@ -69,6 +71,7 @@ class SeriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def series_params
-      params.require(:series).permit(:name)
+      params.require(:series).permit(:name, :stories, :stories_attributes => [
+      :id, :series_id, :_destroy, :description, :position, :title])
     end
 end

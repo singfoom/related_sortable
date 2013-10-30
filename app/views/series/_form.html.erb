@@ -12,5 +12,9 @@
   <% end %>
 
   <%= f.input :name, input_html: { class: "text_field"} %>
+  <%= f.simple_fields_for :stories do |stories_form| %>
+    <%= stories_form.input :title, input_html: { class: "text_field"} %>
+    <%= stories_form.input :description, input_html: { class: "text_field"} %>
+  <% end %>
   <%= f.button :submit %>
 <% end %>
