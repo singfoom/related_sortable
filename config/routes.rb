@@ -1,5 +1,9 @@
 RelatedSortable::Application.routes.draw do
-  resources :stories
+  resources :stories do
+    collection do
+      post 'sort'
+    end
+  end
   root "stories#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

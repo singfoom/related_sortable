@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.order("position")
   end
 
   # GET /stories/1
@@ -59,6 +59,14 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_url }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    params[:story].each_with_index do |id, index|
+      @story = Story.find(id)
+      @story.update_columns({position: index+1})
+    end
+    render nothing: true
   end
 
   private
