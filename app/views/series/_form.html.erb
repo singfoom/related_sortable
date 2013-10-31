@@ -12,18 +12,18 @@
   <% end %>
 
   <%= f.input :name, input_html: { class: "text_field"} %>
-  <div id="stories-container">
+  <div id="stories-container" data-update-url="<%= sort_series_stories_url(@series) %>">
     <%= f.simple_fields_for :stories do |stories_form| %>
-      <div class="duplicatable_nested_form">
-        <%= stories_form.input :title, input_html: { class: "text_field"} %>
-        <%= stories_form.input :description, input_html: { class: "text_field"} %>
-        <% if stories_form.object.new_record? %>
-          <%= link_to "Remove", "", :remote => true, :class => "destroy_duplicate_nested_form" %>
-        <% else %>
-          <%= link_to "Remove", series_story_path(@series, stories_form.object), :method => :delete, :remote => true, :class => "destroy_duplicate_nested_form" %>
-          <%= stories_form.input :id, as: :hidden %>
-        <% end %>
-      </div>
+      <%= content_tag_for :div, stories_form.object, :class => "duplicatable_nested_form" do %>
+          <%= stories_form.input :title, input_html: { class: "text_field"} %>
+          <%= stories_form.input :description, input_html: { class: "text_field"} %>
+          <% if stories_form.object.new_record? %>
+            <%= link_to "Remove", "", :remote => true, :class => "destroy_duplicate_nested_form" %>
+          <% else %>
+            <%= link_to "Remove", series_story_path(@series, stories_form.object), :method => :delete, :remote => true, :class => "destroy_duplicate_nested_form" %>
+            <%= stories_form.input :id, as: :hidden %>
+          <% end %>
+      <% end %>
     <% end %>
     <%= link_to "Add Another Story", "", :class => "duplicate_nested_form" %>
   </div>
