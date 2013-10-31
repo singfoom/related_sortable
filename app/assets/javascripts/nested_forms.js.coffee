@@ -1,9 +1,7 @@
-jQuery ($) ->
+jQuery ->
   $(document).ready ->
-    if $('.duplicatable_nested_form').length
+    if $('.duplicatable_nested_form').length > 0
       nestedForm = $('.duplicatable_nested_form').last().clone()
-
-      $('.destroy_duplicate_nested_form:first').remove()
 
       $("div#stories").on "click", "a.destroy_duplicate_nested_form", (e) ->
         $(this).closest('.duplicatable_nested_form').slideUp().remove()
