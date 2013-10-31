@@ -1,4 +1,6 @@
 RelatedSortable::Application.routes.draw do
+  resources :chapters
+
   resources :books
 
   resources :series do
