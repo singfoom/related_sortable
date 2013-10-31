@@ -3,30 +3,30 @@ jQuery ->
     if $('.duplicatable_nested_form').length > 0
       nestedForm = $('.duplicatable_nested_form').last().clone()
 
-      $("div#stories").on "click", "a.destroy_duplicate_nested_form", (e) ->
-        $(this).closest('.duplicatable_nested_form').slideUp().remove()
+    $(document).on "click", "a.destroy_duplicate_nested_form", (e) ->
+      $(this).closest('.duplicatable_nested_form').slideUp('slow').remove()
 
-      $(document).on "click", ".duplicate_nested_form", (e) ->
-        e.preventDefault()
+    $(document).on "click", ".duplicate_nested_form", (e) ->
+      e.preventDefault()
 
-        lastNestedForm = $('.duplicatable_nested_form').last()
-        newNestedForm = $(nestedForm).clone()
-        formsOnPage = $('.duplicatable_nested_form').length
+      lastNestedForm = $('.duplicatable_nested_form').last()
+      newNestedForm = $(nestedForm).clone()
+      formsOnPage = $('.duplicatable_nested_form').length
 
-        $(newNestedForm).find('label').each -> 
-          oldLabel = $(this).attr 'for'
-          newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
-          $(this).attr 'for', newLabel
+      $(newNestedForm).find('label').each -> 
+        oldLabel = $(this).attr 'for'
+        newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
+        $(this).attr 'for', newLabel
 
-        $(newNestedForm).find('select, input').each -> 
-          oldId = $(this).attr 'id'
-          newId = oldId.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
-          $(this).attr 'id', newId
+      $(newNestedForm).find('select, input').each -> 
+        oldId = $(this).attr 'id'
+        newId = oldId.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
+        $(this).attr 'id', newId
 
-          oldName = $(this).attr 'name'
-          newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[#{formsOnPage}]")
-          $(this).attr 'name', newName
+        oldName = $(this).attr 'name'
+        newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[#{formsOnPage}]")
+        $(this).attr 'name', newName
 
-        $(newNestedForm).insertAfter(lastNestedForm)
+      $(newNestedForm).insertAfter(lastNestedForm)
 
 
