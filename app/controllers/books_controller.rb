@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
+    @chapters = Chapter.all
     @book = Book.new
   end
 

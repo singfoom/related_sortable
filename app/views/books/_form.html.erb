@@ -1,3 +1,11 @@
+<div id="chapters">
+  <% @chapters.each do |chapter| %>
+    <%= content_tag_for :div, chapter, :class => "draggable" do %>
+      <%= chapter.title %>
+    <% end %>
+  <% end %>  
+</div>
+
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
