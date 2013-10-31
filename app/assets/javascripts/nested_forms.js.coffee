@@ -4,7 +4,9 @@ jQuery ->
       nestedForm = $('.duplicatable_nested_form').last().clone()
 
     $(document).on "click", "a.destroy_duplicate_nested_form", (e) ->
-      $(this).closest('.duplicatable_nested_form').slideUp('slow').remove()
+      nestedForm = $(this).closest('.duplicatable_nested_form')
+      nestedForm.slideUp "normal", ->
+        nestedForm.remove()
 
     $(document).on "click", ".duplicate_nested_form", (e) ->
       e.preventDefault()
