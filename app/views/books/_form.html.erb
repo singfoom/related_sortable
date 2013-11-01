@@ -1,7 +1,7 @@
 <div id="chapters">
   <% @chapters.each do |chapter| %>
     <%= content_tag_for :div, chapter, :class => "draggable" do %>
-      <%= chapter.title %>
+      <p><%= chapter.title %></p>
     <% end %>
   <% end %>  
 </div>
@@ -23,6 +23,11 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+
+  <div id="chapter_container" class="droppable">
+    <p>Drop stuff here</p>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
