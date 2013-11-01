@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @chapters = Chapter.all - @book.chapters
   end
 
   # POST /books
